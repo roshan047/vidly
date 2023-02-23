@@ -1,0 +1,91 @@
+﻿@model IEnumerable<VR.Models.Customer>
+
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    
+
+</head>
+<body>
+    @Html.Partial("_navbar")
+
+    
+
+
+    <br />
+    <section>
+        <div class="container">
+            <table class="table shadow-lg p-3 mb-5 bg-light p-2 text-dark bg-opacity-75 rounded" id="customer">
+                <thead>
+                    <tr>
+                        <th>
+                            SR NO
+                        </th>
+                        <th>
+                            Customer Name
+                        </th>
+                        <th>
+                            Membership Type
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int count = 0;}
+                    @foreach (var i in Model)
+                    {
+                        { count = count + 1; }
+                        <tr>
+                            <td id="srno">
+                                @count
+                            </td>
+                            <td class="text-danger">
+                                <a href="customer/Detail?customerId=@i.Cid" class="text-primary text-uppercase fs-5 fw-semibold" style="text-decoration:none;"> @i.name </a>
+                                @*@Html.ActionLink(i.name, "Detail", new { customerId = i.Cid }, new { @class = "text-primary text-uppercase fs-5 fw-semibold" })*@
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.MembershipType)
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+
+            @Html.ActionLink("page", "page", new { no = 1 })
+
+            @Html.ActionLink("row", "row", new { no = 1 })
+
+        </div>
+    </section>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+    <script src="~/Content/jquery-3.6.3.js"></script>
+
+    <script>
+        @{ int count1 = 0; }
+        @foreach(var i in Model)
+       {
+           count1++;
+       }
+        console.log(@count1);
+        //for (var i = 0; i <= count1; i++) {
+        //    const sr=
+        //}
+        
+    </script>
+
+</body>
+</html>

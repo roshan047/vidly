@@ -1,0 +1,49 @@
+﻿@model IEnumerable<VR.Models.Customer>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MovieRentals</title>
+</head>
+<body>
+    @Html.Partial("_navbar")
+    <div class="container">
+        <div>
+            <h2>Movie Rented By</h2>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>
+                                @i.Cid
+                            </td>
+                            <td>
+                                @Html.ActionLink(i.name, "Detail", new { customerId = i.Cid }, new { @class = "text-danger text-uppercase fs-5 fw-semibold" })
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+
+            </table>
+            @Html.ActionLink("Back To", "Movie", "Customer", null, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</body>
+</html>

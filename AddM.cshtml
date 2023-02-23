@@ -1,0 +1,87 @@
+﻿@model VR.Models.Movie
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddC</title>
+</head>
+<body>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Html.Partial("_navbar")
+    <div class="container col-lg-4  class1 bg-light bg-opacity-75 rounded">
+        <h4>Movie</h4>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Genre, new[] {
+                           new SelectListItem() { Text = "Action", Value = "Action"},
+       new SelectListItem() { Text = "Adventure", Value ="Adventure" },new SelectListItem() { Text = "Comedy", Value ="Comedy" },
+       new SelectListItem() { Text = "Suspence", Value ="Suspence" },new SelectListItem() { Text = "Mystery", Value ="Mystery" },
+       new SelectListItem() { Text = "Horror", Value ="Horror" },new SelectListItem() { Text = "Drama", Value ="Drama" },
+       new SelectListItem() { Text = "Triller", Value ="Triller" },new SelectListItem() { Text = "Fiction/Sci-fi", Value ="Fiction/Sci-fi" }
+       ,new SelectListItem() { Text = "Biography", Value ="Biography" }
+   }, "Choose an option", new { htmlAttributes = new { @class = "form-control dropdown" } })
+                    @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Rel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Rel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Rel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.upload, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.upload, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.upload, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.instock, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.instock, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.instock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+</body>
+</html>

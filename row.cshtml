@@ -1,0 +1,114 @@
+﻿@model dynamic
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>page</title>
+    <style>
+        #pag {
+            margin-left: 900px;
+        }
+    </style>
+</head>
+<body>
+    @Html.Partial("_navbar")
+
+
+
+
+    <br />
+    <section>
+        <div class="container">
+            <table class="table shadow-lg p-3 mb-5 bg-light p-2 text-dark bg-opacity-50 rounded" id="customer">
+                <thead>
+                    <tr>
+                        <th>
+                            ID NO
+                        </th>
+                        <th>
+                            Customer Name
+                        </th>
+                        <th>
+                            Membership Type
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int count = 0;
+
+                    }
+                    @foreach (var i in Model.page)
+                    {
+                        { count = count + 1; }
+                        <tr>
+                            <td id="srno">
+                                @i.no
+                            </td>
+                            <td class="text-danger">
+                                <a href="Detail?customerId=@i.Cid" class="text-primary text-uppercase fs-5 fw-semibold" style="text-decoration:none;"> @i.name </a>
+                                @*@Html.ActionLink(i.name, "Detail", new { customerId = i.Cid }, new { @class = "text-primary text-uppercase fs-5 fw-semibold" })
+                                    </td>*@
+                            <td>
+                                @i.MembershipType
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+
+                </tbody>
+            </table>
+            @{ int total = 0;}
+            @foreach (var i in Model.all)
+            {
+                { total += 1; }
+            }
+
+            <div id="pag">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination" id="pageul">
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </section>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+    <script src="~/Content/jquery-3.6.3.js"></script>
+
+    <script>
+
+
+        const a =@total;
+        var b = a % 10;
+        var c = Math.floor(a / 10);
+
+        const ul = document.getElementById("pageul")
+        if (b == 0) {
+            for (var i = 0; i < c; i++) {
+                var temp = `<li class="page-item"><a class="page-link" href="row?no=${i + 1}">${i + 1}</a></li>`;
+                ul.insertAdjacentHTML("beforeend", temp);
+            }
+        }
+        else {
+            for (var i = 0; i <= c; i++) {
+                var temp = `<li class="page-item"><a class="page-link" href="row?no=${i + 1}">${i + 1}</a></li>`;
+                ul.insertAdjacentHTML("beforeend", temp);
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+
